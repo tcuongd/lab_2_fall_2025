@@ -123,13 +123,13 @@ class ForwardKinematics(Node):
         T_0_ee = T_0_1 @ T_1_2 @ T_2_3 @ T_3_ee
         out["leg_front_r"] = T_0_ee[:3, 3].copy()
 
-        back_r = thetas["leg_front_r"]
+        back_r = thetas["leg_back_r"]
         T_0_1 = translation(-0.07500, -0.0335, 0) @ rotation_x(1.57080) @ rotation_z(+back_r[0])
         T_1_2 = translation(0, 0, -0.039) @ rotation_y(-1.57080) @ rotation_z(+back_r[1])
         T_2_3 = translation(0, -0.0494, 0.0685) @ rotation_y(+1.57080) @ rotation_z(+back_r[2])
         T_3_ee = translation(0.06231, -0.06216, -0.018)
         T_0_ee = T_0_1 @ T_1_2 @ T_2_3 @ T_3_ee
-        out["leg_front_r"] = T_0_ee[:3, 3].copy()
+        out["leg_back_r"] = T_0_ee[:3, 3].copy()
 
         return out
 

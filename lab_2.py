@@ -86,6 +86,9 @@ class ForwardKinematics(Node):
             )
 
         # T_0_1 (base_link to leg_front_l_1)
+
+        # theta is positive when the Z-axis points out of the _top_ (i.e. the black cap) of the BLDC motor.
+        # When Z points out of the bottom of the BLDC, theta is negated
         T_0_1 = translation(0.07500, 0.0445, 0) @ rotation_x(1.57080) @ rotation_z(-theta1)
 
         # T_1_2 (leg_front_l_1 to leg_front_l_2)

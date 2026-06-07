@@ -7,7 +7,6 @@ import numpy as np
 
 
 class ForwardKinematics(Node):
-    # (N_legs, N_motors) = (4, 3) matrix of joint angles.
     joint_positions: np.ndarray
     leg_ids: list[str] = ["leg_front_l", "leg_back_l", "leg_front_r", "leg_back_r"]
 
@@ -52,7 +51,7 @@ class ForwardKinematics(Node):
 
     def forward_kinematics(self, thetas: np.ndarray):
         """
-        thetas: (N_legs=4, N_joints=3) matrix of joint angles for each leg
+        thetas: dict of leg_id to joint angles (_1, _2, _3) for the leg.
         """
 
         def rotation_x(angle):
@@ -97,6 +96,7 @@ class ForwardKinematics(Node):
             )
 
         # theta is positive when the Z-axis points out of the BOTTOM (i.e. uncovered metal parts) of the BLDC motor.
+        # Since we keep the frame orientation the same on both left and right sides, motors 1 and 3 will use negative angles on the left and positive angles on the right.
         out: dict[str, list[float]] = {}
 
         front_l = thetas["leg_front_l"]

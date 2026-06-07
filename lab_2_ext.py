@@ -45,7 +45,7 @@ class ForwardKinematics(Node):
 
     def listener_callback(self, msg):
         positions: dict[str, list[float]] = {}
-        for leg_id in enumerate(self.leg_ids):
+        for leg_id in self.leg_ids:
             positions[leg_id] = [
                 msg.position[msg.name.index(f"{leg_id}_{j + 1}")] for j in range(3)
             ]

@@ -19,9 +19,7 @@ class ForwardKinematics(Node):
         self.joint_subscription  # prevent unused variable warning
 
         self.position_publishers: dict[str, Publisher] = {
-            f"{leg_id}_end_effector_position": self.create_publisher(
-                Float64MultiArray, f"{leg_id}_end_effector_position", 10
-            )
+            leg_id: self.create_publisher(Float64MultiArray, f"{leg_id}_end_effector_position", 10)
             for leg_id in self.leg_ids
         }
 

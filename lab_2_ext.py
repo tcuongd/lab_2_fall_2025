@@ -49,7 +49,7 @@ class ForwardKinematics(Node):
 
         self.joint_positions = positions
 
-    def forward_kinematics(self, thetas: np.ndarray):
+    def forward_kinematics(self, thetas: dict[str, list[float]]) -> dict[str, list[float]]:
         """
         thetas: dict of leg_id to joint angles (_1, _2, _3) for the leg.
         """

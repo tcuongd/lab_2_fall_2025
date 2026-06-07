@@ -99,7 +99,7 @@ class ForwardKinematics(Node):
             )
 
         # theta is positive when the Z-axis points out of the BOTTOM (i.e. uncovered metal parts) of the BLDC motor.
-        out: dict[str, list[float]] = []
+        out: dict[str, list[float]] = {}
 
         front_l = thetas["leg_front_l"]
         T_0_1 = translation(0.07500, 0.0445, 0) @ rotation_x(1.57080) @ rotation_z(-front_l[0])

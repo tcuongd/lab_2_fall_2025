@@ -40,7 +40,9 @@ class ForwardKinematics(Node):
     def listener_callback(self, msg):
         # Extract the positions of the joints related to leg_front_l
         joints_of_interest = ["leg_front_l_1", "leg_front_l_2", "leg_front_l_3"]
-        self.joint_positions = [msg.position[msg.name.index(joint)] for joint in joints_of_interest]
+        self.joint_positions = [
+            msg.position[msg.name.index(joint)] for joint in joints_of_interest
+        ]
 
     def forward_kinematics(self, theta1, theta2, theta3):
 
@@ -89,7 +91,9 @@ class ForwardKinematics(Node):
 
         # theta is positive when the Z-axis points out of the _top_ (i.e. the black cap) of the BLDC motor.
         # When Z points out of the bottom of the BLDC, theta is negated
-        T_0_1 = translation(0.07500, 0.0445, 0) @ rotation_x(1.57080) @ rotation_z(-theta1)
+        T_0_1 = (
+            translation(0.07500, 0.0445, 0) @ rotation_x(1.57080) @ rotation_z(-theta1)
+        )
 
         # T_1_2 (leg_front_l_1 to leg_front_l_2)
         ## TODO: Implement the transformation matrix from leg_front_l_1 to leg_front_l_2
@@ -97,7 +101,9 @@ class ForwardKinematics(Node):
 
         # T_2_3 (leg_front_l_2 to leg_front_l_3)
         ## TODO: Implement the transformation matrix from leg_front_l_2 to leg_front_l_3
-        T_2_3 = translation(0, -0.0494, 0.0685) @ rotation_y(+1.57080) @ rotation_z(-theta3)
+        T_2_3 = (
+            translation(0, -0.0494, 0.0685) @ rotation_y(+1.57080) @ rotation_z(-theta3)
+        )
 
         # T_3_ee (leg_front_l_3 to end-effector)
         T_3_ee = translation(0.06231, -0.06216, -0.018)
